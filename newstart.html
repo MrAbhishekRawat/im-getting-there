@@ -27,32 +27,23 @@
       <li class="list-group-item">Item 2</li>
       <li class="list-group-item">Item 3</li>
       <li class="list-group-item">Item 4</li>
-      <li class="list-group-item">New item</li>
+      
     </ul>
    </div>
   </div>
   <script>
-    let hT= document.getElementById('header-title');
-let header= document.getElementById('main-header');
+    let item= document.getElementsByClassName('list-group-item');
+    item[1].style.backgroundColor= "#8bc34a";
+    item[2].style.color= "white";
 
-header.style.borderBottom="thick solid black";
+    let itm= document.querySelectorAll('.list-group-item');
+    itm[1].style.color= "green";
 
-let m= document.getElementsByTagName('h2');
-for (let i = 0; i < m.length; i++) {
-   m[i].style.font = "italic bold 50px aerial, serif";
-   
-}
-let itm = document.getElementsByClassName('list-group-item');
-itm[4].style.backgroundColor= "green";
+    let odd = document.querySelectorAll('li:nth-child(odd)');
+    for(i=0;i<odd.length;i++){
+      odd[i].style.backgroundColor= "#cddc39";
+    }
 
-let li= document.getElementsByTagName('li');
-li[4].style.borderBottom= "red solid";
-
-for (let i = 0; i < itm.length; i++) {
-    itm[i].style.font = "times new roman 10px";
-    itm[i].style.color= "red";
-    itm[i].style.fontWeight= "bold";
-}
   </script>
 
 </body>
