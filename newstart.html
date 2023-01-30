@@ -32,17 +32,33 @@
    </div>
   </div>
   <script>
-    let item= document.getElementsByClassName('list-group-item');
-    item[1].style.backgroundColor= "#8bc34a";
-    item[2].style.color= "white";
+    let itm = document.querySelector("#main-header");
+    itm.parentElement.style.backgroundColor= "yellow";
+    
+    let item1 = document.querySelector("#items");
+    
 
-    let itm= document.querySelectorAll('.list-group-item');
-    itm[1].style.color= "green";
+    item1.children[2].style.backgroundColor= "pink"
+    item1.firstElementChild.textContent= "is first item";
+    item1.lastElementChild.textContent="could be last item";
+    item1.previousElementSibling.textContent="hello added here too"
+    
+    
 
-    let odd = document.querySelectorAll('li:nth-child(odd)');
-    for(i=0;i<odd.length;i++){
-      odd[i].style.backgroundColor= "#cddc39";
-    }
+
+    let nDiv= document.createElement('div');
+    nDiv.className= "hello";
+    nDiv.id= "hllo1";
+    nDiv.setAttribute('title','hellodiv');
+    let ndivtxt= document.createTextNode("HELLO added");
+    nDiv.appendChild(ndivtxt);
+    let cont= document.querySelector('header .container');
+    let h1= document.querySelector('header h1');
+    nDiv.style.fontSize= "30px"
+    cont.insertBefore(nDiv, h1);
+
+
+
 
   </script>
 
