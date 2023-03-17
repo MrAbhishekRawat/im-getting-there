@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Expense Tracker</title>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+  }
+  
+  header {
+    background: #b6b647;
+    display: block;
+    padding: 1%;
+    text-align: center;
+  }
+  
+  .btn {
+    display: block;
+    width: 10%;
+    padding: 15px 15px;
+    border: 10;
+    background: #333;
+    color: #fff;
+    border-radius: 10px;
+    margin: 5px;
+  }
+
+  form {
+    margin-top: 5%;
+
+  }
+  
+  
+    </style>
+    
+  </head>
+  <body>
+    <header>
+      <h1>Expense Tracker</h1>
+    </header>
+   
+
+    <form>
+    
+      <label for="name">Choose Expense Amount:</label>
+      <input type="number" id="name"> <br>
+      <label for="email">Choose Description:</label>
+      <input type="text" id="email"> <br>
+      <label for="phone">Choose Category:</label>
+      <select id="phone" name="phone">
+        <option value="Movie">Movie</option>
+        <option value="Food">Food</option>
+        <option value="Travel">Travel</option>
+        <option value="Bill Pay">Bill Pay</option>
+      </select>
+      <input class="btn" type="submit" value="Submit">
+    </form>
+
+      <ul id="users"></ul>
+
+      <!-- <ul class="items">
+        <li class="item">Item 1</li>
+        <li class="item">Item 2</li>
+        <li class="item">Item 3</li>
+      </ul> -->
+    </section>
+    
+
+    <script>
+
+const myForm = document.querySelector('form');
+const nameInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
+const phoneInput = document.querySelector('#phone');
+const userList = document.querySelector('#users');
+
+myForm.addEventListener('submit', onSubmit);
+
+function onSubmit(e) {
+  e.preventDefault();
+
+  const userData = { name: nameInput.value, email: emailInput.value, phone: phoneInput.value };
+  localStorage.setItem('userData', JSON.stringify(userData));
+  const li = document.createElement('li');
+  li.innerHTML = `
+    Amount: ${userData.name}, Description: ${userData.email}, Category: ${userData.phone} 
+    <button class="edit-btn">Edit</button>
+    <button class="delete-btn">Delete</button>
+  `;
+  userList.appendChild(li);
+  nameInput.value = '';
+  emailInput.value = '';
+  phoneInput.value = '';
+}
+
+userList.addEventListener('click', e => {
+  if (e.target.classList.contains('delete-btn')) {
+    localStorage.removeItem('userData');
+    e.target.parentElement.remove();
+  } else if (e.target.classList.contains('edit-btn')) {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    nameInput.value = userData.name;
+    emailInput.value = userData.email;
+    phoneInput.value = userData.phone;
+    e.target.parentElement.remove();
+    localStorage.removeItem('userData');
+  }
+});
+
+const storedData = JSON.parse(localStorage.getItem('userData'));
+if (storedData) {
+  const li = document.createElement('li');
+  li.innerHTML = `
+    Amount: ${storedData.name}, Descripton: ${storedData.email}, Category: ${storedData.phone} 
+    <button class="edit-btn">Edit</button>
+    <button class="delete-btn">Delete</button>
+  `;
+  userList.appendChild(li);
+}
+
+      
+    </script>
+  </body>
+</html>
